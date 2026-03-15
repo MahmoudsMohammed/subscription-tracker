@@ -5,8 +5,8 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 'latest',
       globals: {
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     rules: {
       // ─── POSSIBLE ERRORS ──────────────────────────────────────
@@ -20,8 +20,8 @@ module.exports = [
         'warn',
         {
           // warn on unused variables
-          argsIgnorePattern: '^_' // ignore args starting with _
-        }
+          argsIgnorePattern: '^_', // ignore args starting with _
+        },
       ],
 
       // ─── BEST PRACTICES ───────────────────────────────────────
@@ -44,8 +44,8 @@ module.exports = [
         {
           // no using variables before defining
           functions: false, // allow hoisted functions
-          classes: true
-        }
+          classes: true,
+        },
       ],
       'no-shadow': 'warn', // no variable shadowing outer scope
 
@@ -56,16 +56,16 @@ module.exports = [
         'single',
         {
           // use single quotes
-          avoidEscape: true // allow double quotes to avoid escaping
-        }
+          avoidEscape: true, // allow double quotes to avoid escaping
+        },
       ],
       indent: [
         'error',
         2,
         {
           // 2-space indentation
-          SwitchCase: 1 // indent switch cases
-        }
+          SwitchCase: 1, // indent switch cases
+        },
       ],
       'comma-dangle': ['error', 'never'], // no trailing commas
       'comma-spacing': [
@@ -73,16 +73,16 @@ module.exports = [
         {
           // space after comma
           before: false,
-          after: true
-        }
+          after: true,
+        },
       ],
       'key-spacing': [
         'error',
         {
           // space after colon in objects
           beforeColon: false,
-          afterColon: true
-        }
+          afterColon: true,
+        },
       ],
       'space-before-blocks': 'error', // space before { block }
       'space-infix-ops': 'error', // space around operators (a + b)
@@ -91,8 +91,8 @@ module.exports = [
         {
           // space before/after keywords
           before: true,
-          after: true
-        }
+          after: true,
+        },
       ],
       'space-before-function-paren': [
         'error',
@@ -100,8 +100,8 @@ module.exports = [
           // space before function parenthesis
           anonymous: 'never',
           named: 'never',
-          asyncArrow: 'always'
-        }
+          asyncArrow: 'always',
+        },
       ],
       'object-curly-spacing': ['error', 'always'], // spaces inside { object }
       'array-bracket-spacing': ['error', 'never'], // no spaces inside [array]
@@ -112,8 +112,8 @@ module.exports = [
         {
           // max empty lines
           max: 2,
-          maxEOF: 1
-        }
+          maxEOF: 1,
+        },
       ],
 
       // ─── ES6+ ─────────────────────────────────────────────────
@@ -122,8 +122,8 @@ module.exports = [
         {
           // space around arrow =>
           before: true,
-          after: true
-        }
+          after: true,
+        },
       ],
       'arrow-body-style': ['warn', 'as-needed'], // omit {} when arrow fn returns directly
       'prefer-arrow-callback': 'warn', // use arrow functions as callbacks
@@ -135,9 +135,9 @@ module.exports = [
         {
           // prefer destructuring
           array: false,
-          object: true
-        }
-      ]
-    }
-  }
+          object: true,
+        },
+      ],
+    },
+  },
 ];
