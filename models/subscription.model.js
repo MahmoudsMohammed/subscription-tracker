@@ -22,6 +22,7 @@ const subscriptionSchema = mongoose.Schema(
     frequency: {
       type: String,
       enum: ['daily', 'weekly', 'monthly', 'yearly'],
+      required: [true, 'Subscription frequency is required'],
     },
     category: {
       type: String,
@@ -55,6 +56,7 @@ const subscriptionSchema = mongoose.Schema(
         },
         message: 'The start date must be in the bast',
       },
+      required: [true, 'Subscription start date is required'],
     },
     renewalDate: {
       type: Date,
@@ -74,3 +76,30 @@ const subscriptionSchema = mongoose.Schema(
   },
   { timestamps: true },
 );
+
+// Hooks act as middle ware pre | post DB interaction
+// fill missed info from exist data pre save
+subscriptionSchema.pre('save', function (next) {
+  if (!this.renewalDate) {
+    const renewalPeriods = {
+      daily: 1,
+      weekly: 7,
+      monthly: 30,
+      yearly: 365,
+    };
+    this.renewalDate = new Date(this.startDate);
+    this.renewalDate.setDate(
+      this.renewalDate.getDate() + renewalPeriods[this.frequency],
+    );
+  }
+
+  if (this.renewalDate < new Date()) {
+    this.status = 'expired';
+  }
+
+  next();
+});
+
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
+export default Subscription;
